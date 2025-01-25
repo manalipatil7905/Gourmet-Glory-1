@@ -1,1 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gourmet Glory - Artisan Sauces</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .hero {
+            text-align: center;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        .carousel {
+            position: relative;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .carousel img {
+            width: 100%;
+            display: none;
+        }
+        .carousel img.active {
+            display: block;
+        }
+        .carousel-controls {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+        .recipes {
+            padding: 20px;
+            background-color: #fff3e0;
+        }
+        .recipes h2 {
+            text-align: center;
+        }
+        .recipe {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        .recipe img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+        }
+        .contact {
+            padding: 20px;
+            background-color: #f1f1f1;
+            text-align: center;
+        }
+        .contact form {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
 
+    <div class="hero">
+        <div class="carousel">
+            <img src="sauce1.jpg" alt="Sauce 1">
+            <img src="sauce2.jpg" alt="Sauce 2">
+            <img src="sauce3.jpg" alt="Sauce 3">
+            <div class="carousel-controls">
+                <button id="prev">Previous</button>
+                <button id="next">Next</button>
+            </div>
+        </div>
+        <p id="caption">Spicy Sriracha - "Add a fiery kick to your dishes!"</p>
+    </div>
+
+    <div class="recipes">
+        <h2>Delicious Recipes</h2>
+        <div class="recipe">
+            <a href="https://bakerbynature.com/sweet-spicy-sriracha-baked-chicken-wings/" target="main"> <img src="https://bakerbynature.com/wp-content/uploads/2015/02/Sweet-and-Spicy-Sriracha-Chicken-Wings-0-6.jpg" alt="Recipe 1" height="100">
+            </a>
+            <div>
+                <h3>Sriracha Chicken Wings</h3>
+                <p>Juicy chicken wings coated in our Spicy Sriracha sauce for the perfect game-day snack.</p>
+            </div>
+        </div>
+        <div class="recipe">
+            <a href="https://enzostable.com/pages/garlic-aioli-burger" target="main"> <img src="https://cdn.shopify.com/s/files/1/0081/5185/9281/t/6/assets/pf-2e05ecb2--ENZORecipesBurger8849.jpg?v=1624903470" alt="Recipe 1" height="100">
+            </a>
+            <div>
+                <h3>Garlic Aioli Burgers</h3>
+                <p>Gourmet burgers topped with our Creamy Garlic Aioli for a burst of flavor.</p>
+            </div>
+        </div>
+        <div class="recipe">
+            <a href="https://realhousemoms.com/honey-mustard-chicken-salad/" target="main"> <img src="https://realhousemoms.com/wp-content/uploads/Honey-Mustard-Chicken-Salad-HERO-1.jpg" alt="Recipe 1" height="100">
+            </a>
+            <div>
+                <h3>Honey Mustard Salad</h3>
+                <p>Fresh greens tossed with our Sweet Honey Mustard dressing.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="contact">
+        <h2>Contact Us</h2>
+        <form>
+            <label for="name">Name:</label><br>
+            <input type="text" id="name" name="name" required><br><br>
+
+            <label for="email">Email:</label><br>
+            <input type="email" id="email" name="email" required><br><br>
+
+            <label for="message">Message:</label><br>
+            <textarea id="message" name="message" rows="5" required></textarea><br><br>
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <script>
+        const images = document.querySelectorAll('.carousel img');
+        const caption = document.getElementById('caption');
+        const captions = [
+            'Spicy Sriracha - "Add a fiery kick to your dishes!"',
+            'Creamy Garlic Aioli - "Perfect for dipping and spreading."',
+            'Sweet Honey Mustard - "A delightful blend of sweet and tangy."'
+        ];
+        let currentIndex = 0;
+
+        document.getElementById('prev').addEventListener('click', () => {
+            images[currentIndex].classList.remove('active');
+            currentIndex = (currentIndex - 1 + images.length) % images.length;
+            images[currentIndex].classList.add('active');
+            caption.textContent = captions[currentIndex];
+        });
+
+        document.getElementById('next').addEventListener('click', () => {
+            images[currentIndex].classList.remove('active');
+            currentIndex = (currentIndex + 1) % images.length;
+            images[currentIndex].classList.add('active');
+            caption.textContent = captions[currentIndex];
+        });
+    </script>
+
+</body>
+</html>
