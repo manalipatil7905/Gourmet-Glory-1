@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gourmet Glory - Artisan Sauces</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .hero {
+            text-align: center;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        .carousel {
+            position: relative;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .carousel img {
+            width: 100%;
+            display: none;
+        }
+        .carousel img.active {
+            display: block;
+        }
+        .carousel-controls {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+        .recipes {
+            padding: 20px;
+            background-color: #fff3e0;
+        }
+        .recipes h2 {
+            text-align: center;
+        }
+        .recipe {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        .recipe img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+        }
+        .contact {
+            padding: 20px;
+            background-color: #f1f1f1;
+            text-align: center;
+        }
+        .contact form {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <div class="carousel">
+            <img src="sauce1.jpg" alt="Sauce 1" class="active">
+            <img src="sauce2.jpg" alt="Sauce 2">
+            <img src="sauce3.jpg" alt="Sauce 3">
+            <div class="carousel-controls">
+                <button id="prev">Previous</button>
+                <button id="next">Next</button>
+            </div>
+        </div>
+        <p id="caption">Spicy Sriracha - "Add a fiery kick to your dishes!"</p>
+    </div>
+
+    <div class="recipes">
+        <h2>Delicious Recipes</h2>
+        <div class="recipe">
+            <img src="/Gourmet Glory/images/Sriracha.jpg" height="200" width="100" alt="Sriracha Chicken">
+            <div>
+                <h3>Sriracha Chicken Wings</h3>
+                <p>Juicy chicken wings coated in our Spicy Sriracha sauce for the perfect game-day snack.</p>
+            </div>
+        </div>
+        <div class="recipe">
+            <img src="/Gourmet Glory/images/Garlicburger.webp" height="200" width="100" alt="Garlic Aioli Burgers">
+            <div>
+                <h3>Garlic Aioli Burgers</h3>
+                <p>Gourmet burgers topped with our Creamy Garlic Aioli for a burst of flavor.</p>
+            </div>
+        </div>
+        <div class="recipe">
+            <img src="/Gourmet Glory/images/HoneyMustardChicken.jpg" height="200" width="100" alt="Honey Mustard Salad">
+            <div>
+                <h3>Honey Mustard Salad</h3>
+                <p>Fresh greens tossed with our Sweet Honey Mustard dressing.</p>
+            </div>
+        </div>
+
+        <div class="recipe">
+            <img src="/Gourmet Glory/images/Veg-grilled.jpg" height="200" width="100" alt="Veggie grilled wraps">
+            <div>
+                <h3>Veggie grilled wraps</h3>
+                <p>Fresh roasted vegetables wrapped in a tortilla and drizzled with our Tangy Herb Yogurt Sauce for a refreshing meal.</p>
+            </div>
+        </div>
+
+        <div class="recipe">
+            <img src="/Gourmet Glory/images/StuffedPepper.jpg" height="200" width="100" alt="Stuffed Bell Peppers">
+            <div>
+                <h3>Stuffed Bell Peppers</h3>
+                <p>Bell peppers filled with a mix of rice, veggies, and our Spicy Tomato Salsa, baked to perfection.</p>
+            </div>
+        </div>
+
+        <div class="recipe">
+            <img src="/Gourmet Glory/images/creamypesto.jpg" height="200" width="100" alt="Creamy Pesto Pasta">
+            <div>
+                <h3>Creamy Pesto Pasta</h3>
+                <p>This rich sauce is made from basil, garlic, pine nuts, and olive oil, giving the pasta a flavorful, creamy texture.</p>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="contact">
+        <h2>Contact Us</h2>
+        <form>
+            <label for="name">Name:</label><br>
+            <input type="text" id="name" name="name" required><br><br>
+
+            <label for="email">Email:</label><br>
+            <input type="email" id="email" name="email" required><br><br>
+
+            <label for="message">Message:</label><br>
+            <textarea id="message" name="message" rows="5" required></textarea><br><br>
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <script>
+        const images = document.querySelectorAll('.carousel img');
+        const captions = [
+            "Spicy Sriracha - \"Add a fiery kick to your dishes!\"",
+            "Creamy Garlic Aioli - \"Perfect for burgers and sandwiches!\"",
+            "Sweet Honey Mustard - \"Great for salads and dips!\""
+        ];
+        const captionElement = document.getElementById('caption');
+        const prevButton = document.getElementById('prev');
+        const nextButton = document.getElementById('next');
+        let currentIndex = 0;
+
+        function updateCarousel(index) {
+            images.forEach((img, i) => {
+                img.classList.toggle('active', i === index);
+            });
+            captionElement.textContent = captions[index];
+        }
+
+        prevButton.addEventListener('click', () => {
+            currentIndex = (currentIndex === 0) ? images.length - 1 : currentIndex - 1;
+            updateCarousel(currentIndex);
+        });
+
+        nextButton.addEventListener('click', () => {
+            currentIndex = (currentIndex === images.length - 1) ? 0 : currentIndex + 1;
+            updateCarousel(currentIndex);
+        });
+    </script>
+</body>
+</html>
