@@ -1,1 +1,224 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gourmet Glory - Artisan Sauces</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .hero {
+            text-align: center;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+        .overlay-content {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            max-width: 600px;
+            width: 90%;
+            text-align: center;
+            color: black;
+        }
+        .overlay-content a {
+            color: blue;
+            text-decoration: underline;
+        }
+        .close-overlay {
+            margin-top: 20px;
+            background-color: #ff6b6b;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .carousel {
+            position: relative;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .carousel img {
+            width: 100%;
+            display: none;
+        }
+        .carousel img.active {
+            display: block;
+        }
+        .carousel-controls {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+        .recipes {
+            padding: 20px;
+            background-color: #fff3e0;
+        }
+        .recipes h2 {
+            text-align: center;
+        }
+        .recipe {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        .recipe img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            cursor: pointer;
+        }
+        .contact {
+            padding: 20px;
+            background-color: #f1f1f1;
+            text-align: center;
+        }
+        .contact form {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
 
+    <div class="hero">
+        <!-- Carousel -->
+        <div class="carousel">
+            <img src="https://via.placeholder.com/600x400?text=Sauce+1" alt="Sauce 1" class="active">
+            <img src="https://via.placeholder.com/600x400?text=Sauce+2" alt="Sauce 2">
+            <img src="https://via.placeholder.com/600x400?text=Sauce+3" alt="Sauce 3">
+            <div class="carousel-controls">
+                <button id="prev">Previous</button>
+                <button id="next">Next</button>
+            </div>
+        </div>
+        
+    </div>
+
+    <div class="recipes">
+        <h2>Delicious Recipes</h2>
+        <div class="recipe">
+            <img 
+                src="https://bakerbynature.com/wp-content/uploads/2015/02/Sweet-and-Spicy-Sriracha-Chicken-Wings-0-6.jpg" 
+                alt="Recipe 1"
+                data-url="https://www.allrecipes.com/recipe/241001/crispy-honey-sriracha-chicken-wings/"
+            >
+            <div>
+                <h3>Sriracha Chicken Wings</h3>
+                <p>Juicy chicken wings coated in our Spicy Sriracha sauce for the perfect game-day snack.</p>
+            </div>
+        </div>
+        <div class="recipe">
+            <img 
+                src="https://cdn.shopify.com/s/files/1/0081/5185/9281/t/6/assets/pf-2e05ecb2--ENZORecipesBurger8849.jpg?v=1624903470" 
+                alt="Recipe 2"
+                data-url="https://enzostable.com/pages/garlic-aioli-burger"
+            >
+            <div>
+                <h3>Garlic Aioli Burgers</h3>
+                <p>Gourmet burgers topped with our Creamy Garlic Aioli for a burst of flavor.</p>
+            </div>
+        </div>
+        <div class="recipe">
+            <img 
+                src="https://realhousemoms.com/wp-content/uploads/Honey-Mustard-Chicken-Salad-HERO-1.jpg" 
+                alt="Recipe 3"
+                data-url="https://realhousemoms.com/honey-mustard-chicken-salad/"
+            >
+            <div>
+                <h3>Honey Mustard Salad</h3>
+                <p>Fresh greens tossed with our Sweet Honey Mustard dressing.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="contact">
+        <h2>Contact Us</h2>
+        <form>
+            <label for="name">Name:</label><br>
+            <input type="text" id="name" name="name" required><br><br>
+
+            <label for="email">Email:</label><br>
+            <input type="email" id="email" name="email" required><br><br>
+
+            <label for="message">Message:</label><br>
+            <textarea id="message" name="message" rows="5" required></textarea><br><br>
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <!-- Overlay -->
+    <div class="overlay" id="overlay">
+        <div class="overlay-content">
+            <h3>View Recipe</h3>
+            <p>Click the link below to view the recipe:</p>
+            <a id="recipe-link" href="#" target="_blank">Go to Recipe</a>
+            <br>
+            <button class="close-overlay" id="close-overlay">Close</button>
+        </div>
+    </div>
+
+    <script>
+        // Carousel Logic
+        const images = document.querySelectorAll('.carousel img');
+        const caption = document.getElementById('caption');
+        const captions = [
+            'Spicy Sriracha - "Add a fiery kick to your dishes!"',
+            'Creamy Garlic Aioli - "Perfect for dipping and spreading."',
+            'Sweet Honey Mustard - "A delightful blend of sweet and tangy."'
+        ];
+        let currentIndex = 0;
+
+        document.getElementById('prev').addEventListener('click', () => {
+            images[currentIndex].classList.remove('active');
+            currentIndex = (currentIndex - 1 + images.length) % images.length;
+            images[currentIndex].classList.add('active');
+            caption.textContent = captions[currentIndex];
+        });
+
+        document.getElementById('next').addEventListener('click', () => {
+            images[currentIndex].classList.remove('active');
+            currentIndex = (currentIndex + 1) % images.length;
+            images[currentIndex].classList.add('active');
+            caption.textContent = captions[currentIndex];
+        });
+
+        // Recipe image click logic
+        const overlay = document.getElementById('overlay');
+        const recipeLink = document.getElementById('recipe-link');
+        const closeOverlay = document.getElementById('close-overlay');
+        const recipeImages = document.querySelectorAll('.recipe img');
+        
+        recipeImages.forEach(img => {
+            img.addEventListener('click', () => {
+                overlay.style.display = 'flex';
+                recipeLink.href = img.dataset.url; // Set the link
+            });
+        });
+
+        closeOverlay.addEventListener('click', () => {
+            overlay.style.display = 'none';
+        });
+    </script>
+
+</body>
+</html>
