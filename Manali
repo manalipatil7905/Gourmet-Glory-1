@@ -17,7 +17,7 @@
         }
         .carousel {
             position: relative;
-            max-width: 600px;
+            max-width: 200px;
             margin: 0 auto;
         }
         .carousel img {
@@ -63,9 +63,11 @@
 <body>
     <div class="hero">
         <div class="carousel">
-            <img src="sauce1.jpg" alt="Sauce 1" class="active">
-            <img src="sauce2.jpg" alt="Sauce 2">
-            <img src="sauce3.jpg" alt="Sauce 3">
+            <img src="https://habanero.in/cdn/shop/products/Sriracha-Sauce3_1800x1800.jpg?v=1652280631" alt="Sriracha Sauce" class="active">
+            <img src="https://www.forkinthekitchen.com/wp-content/uploads/2020/10/200909.garlic.aioli_.updated-4064-10.jpg" alt="Garlic Aioli Sauce">
+            <img src="https://thesouthernladycooks.com/wp-content/uploads/2024/07/HomemadeHoneyMustardSauce.jpg" alt="Honey Musturd Sauce">
+            <img src="https://sweetcaramelsunday.com/wp-content/uploads/Herb-Yoghurt-Sauce-120.jpg" alt="Herb Yogurt Sauce">
+            <img src="https://nishkitchen.com/wp-content/uploads/2024/05/Spicy-marinara-sauce-1.jpg" alt="Spicy Tomato Salsa">
             <div class="carousel-controls">
                 <button id="prev">Previous</button>
                 <button id="next">Next</button>
@@ -151,7 +153,9 @@
         const captions = [
             "Spicy Sriracha - \"Add a fiery kick to your dishes!\"",
             "Creamy Garlic Aioli - \"Perfect for burgers and sandwiches!\"",
-            "Sweet Honey Mustard - \"Great for salads and dips!\""
+            "Sweet Honey Mustard - \"Great for salads and dips!\"",
+            "Tangy Herb Yogurt Sauce - \"A refreshing blend of herbs and yogurt, perfect for wraps and dips!\"",
+            "Spicy Tomato Salsa- \"A bold and zesty salsa that adds a punch of flavor to your favorite dishes!\""
         ];
         const captionElement = document.getElementById('caption');
         const prevButton = document.getElementById('prev');
